@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random Fun Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, #89f7fe, #66a6ff);
+            text-align: center;
+            padding: 50px;
+            color: #333;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            width: 300px;
+            margin: auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            background: #66a6ff;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #4d8fe6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>✨ Random Vibes ✨</h1>
+        <p id="text">Click the button for a random message!</p>
+        <button onclick="changeText()">Surprise Me</button>
+    </div>
+
+    <script>
+        const messages = [
+            "You are doing better than you think.",
+            "Drink some water bestie 💧",
+            "Small progress is still progress.",
+            "Today is a good day to start something.",
+            "Your future self is rooting for you."
+        ];
+
+        function changeText() {
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            document.getElementById("text").innerText = messages[randomIndex];
+        }
+    </script>
+
+</body>
+</html>

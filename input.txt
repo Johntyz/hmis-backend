@@ -1,0 +1,226 @@
+APP: patients
+
+PROMPT_1:
+You are a senior software architect analyzing a Django REST backend for a Hospital Management Information System (HMIS).
+
+Your task is to produce a deep, comprehensive system memory document that will be consumed by an AI assistant to safely extend the backend without breaking existing functionality.
+
+This document is NOT for humans. It is for an AI that needs to understand the system well enough to add new features, models, endpoints, and business logic safely.
+
+YOU MUST BE EXHAUSTIVE. Vague or incomplete output is a failure. Every rule, every field, every pattern must be documented precisely.
+
+OUTPUT FORMAT REQUIREMENT
+
+Produce output as a structured markdown document titled:
+
+SYSTEM_MEMORY.md
+
+Use the exact sections below.
+
+1. SYSTEM OVERVIEW
+- What this module does
+- Where it fits in the HMIS workflow
+- Which user roles interact with it and how
+
+2. COMPLETE DATA MODEL
+For EVERY model extract WITHOUT EXCEPTION:
+- Model name and exact purpose
+- EVERY field with its exact business meaning
+- Whether each field is required or optional
+- Whether each field is unique
+- All relationships (FK, OneToOne, ManyToMany) and exactly what they represent
+- All default values and why they exist
+- Any computed or derived fields
+- Any soft delete fields and how they work
+
+3. BUSINESS RULES (MOST CRITICAL SECTION)
+Extract EVERY SINGLE rule enforced by the system.
+Do NOT summarize. List every rule as a separate statement.
+Include:
+- Every validation rule per field
+- Every permission restriction
+- Every workflow constraint
+- Every data integrity rule
+- Every status transition with exact allowed paths
+- Everything that is explicitly prevented and why
+- Every unique constraint
+- Every format constraint
+
+Write every rule as a precise plain English statement.
+Missing a single rule here will cause future features to break existing ones.
+
+4. PERMISSION ARCHITECTURE
+For every role:
+- Exact actions they can perform
+- Exact actions they cannot perform
+- Exact conditions that change their permissions
+- Exactly how permissions are enforced (model level, view level, serializer level)
+- Exact permission classes used
+
+5. STATUS MACHINES
+For every entity that has a status or lifecycle:
+- All possible states with exact meaning
+- All allowed transitions with exact triggers
+- All blocked transitions and why
+- What happens to related data at each transition
+
+6. EXISTING PATTERNS & CONVENTIONS
+Document EXACTLY:
+- How ViewSets are structured
+- How serializers are structured
+- How permissions are applied
+- How validation is done
+- How errors are returned including exact error message format
+- How services are used
+- Any base classes or mixins used
+- URL routing conventions
+
+7. API SURFACE
+For every endpoint document:
+- What the endpoint does
+- Exact URL pattern
+- Allowed HTTP methods
+- Who can access it
+- What data it expects
+- What it returns on success
+- What it returns on failure
+
+8. INTEGRATION POINTS
+- Where models connect to other modules
+- Shared utilities or services
+- Any signals or hooks
+- Places where new features must plug in carefully
+
+9. SAFE EXTENSION ZONES
+- Where new models can be added safely
+- Where new endpoints can be added safely
+- Where new business rules can be added without side effects
+- What must NOT be changed and why
+
+10. KNOWN GAPS & INCOMPLETE LOGIC
+List every piece of logic that is incomplete, inconsistent, or ambiguous.
+These are danger zones for future development.
+
+STRICT RULES:
+- Do NOT include code snippets
+- Do NOT be vague — every statement must be precise and actionable
+- Do NOT skip fields, rules, or endpoints
+- Be exhaustive — incomplete output is a failure
+
+
+PROMPT_2:
+You are a senior software architect analyzing a Django REST backend for a Hospital Management Information System (HMIS).
+
+Your task is to produce a precise frontend contract document that will be consumed by an AI assistant to build a frontend that is fully consistent with this backend.
+
+This document is NOT for humans. It is for an AI frontend developer that needs to know EXACTLY what the backend can do, what data it expects, what it returns, and what rules govern every UI interaction.
+
+YOU MUST BE EXHAUSTIVE AND PRECISE. Vague output is a failure. Missing a rule will cause the frontend to break.
+
+OUTPUT FORMAT REQUIREMENT
+
+Produce output as a structured markdown document titled:
+
+FRONTEND_CONTRACT.md
+
+Use the exact sections below.
+
+1. SYSTEM CAPABILITIES SUMMARY
+List EVERY action the system can perform grouped by domain.
+Write as: "Actor can perform Action on Entity under Condition"
+Be exhaustive — list every single capability.
+
+2. API ENDPOINTS
+For EVERY endpoint document:
+- Exact URL pattern
+- HTTP method
+- Who can call it (roles)
+- Authentication required (yes/no and how)
+- Exact request body fields (required vs optional)
+- Exact response body on success (every field returned)
+- Exact response body on failure (error format and possible messages)
+- HTTP status codes returned
+
+3. DATA CONTRACTS
+For EVERY entity the frontend will interact with:
+- Every field the frontend must send (required vs optional)
+- Every field the backend will return (including read-only fields)
+- Exact allowed values for fields with fixed options
+- Fields that are read-only and must never be sent
+- Fields that are write-once and cannot be updated
+- Field format constraints (digits only, email format, date format)
+
+4. AUTHENTICATION & AUTHORIZATION
+- How authentication works
+- What token type is used
+- Where the token must be sent in requests
+- How role based access is determined
+- What happens when an unauthorized request is made
+
+5. ROLE BASED UI RULES
+For EVERY user role define EXACTLY:
+- What pages they can access
+- What actions they can perform
+- What they cannot see or do
+- How the UI must change based on their role
+
+6. STATE BASED UI RULES
+For every entity with a status or lifecycle:
+- What UI actions are available at each state
+- What fields become read-only at each state
+- What transitions the UI must support
+- What the UI must explicitly prevent
+
+7. FORM REQUIREMENTS
+For EVERY create or update operation:
+- Every field in the form
+- Which are required vs optional
+- Field types and formats
+- Any field dependencies
+- Validation rules the frontend must enforce before sending
+- Exact success behavior
+- Exact error handling behavior
+
+8. ERROR HANDLING
+For EVERY operation list:
+- Every possible error
+- Exact error response format from backend
+- Exact HTTP status code
+- How the UI must handle each error
+
+9. WORKFLOW SEQUENCES
+Describe EVERY complete user journey as precise sequential steps.
+Include what the system does at each step, not just the user.
+
+10. CONDITIONAL UI BEHAVIOR
+List ALL cases where UI must change based on data:
+- Fields that appear or disappear
+- Buttons that enable or disable
+- Sections visible only to certain roles
+- Any dynamic behavior driven by backend data
+
+11. PAGINATION & LISTING BEHAVIOR
+For every list endpoint:
+- Is it paginated
+- What pagination format is used
+- What query parameters are supported
+- What the list response looks like
+
+12. FRONTEND ASSUMPTIONS TO AVOID
+List everything the frontend must NOT assume.
+Be specific — generic warnings are useless.
+
+STRICT RULES:
+- Be exhaustive and precise
+- No vague statements
+- No code snippets
+- Every rule must be immediately actionable by a frontend AI
+- Missing an endpoint, field, or rule is a failure
+
+
+FILES:
+C:\Users\JOHNNY\Desktop\hmis-backend\apps\patients\models.py
+C:\Users\JOHNNY\Desktop\hmis-backend\apps\patients\serializers.py
+C:\Users\JOHNNY\Desktop\hmis-backend\apps\patients\views.py
+C:\Users\JOHNNY\Desktop\hmis-backend\apps\patients\urls.py
+C:\Users\JOHNNY\Desktop\hmis-backend\apps\patients\services.py
